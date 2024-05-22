@@ -8,29 +8,29 @@
      const [ loading, setLoading ] = useState(true);
      const [ error, setError ] = useState(null);
 
-     async function loadPosts() {
-        try {
-            const response = await fetch(API_URL);
-            // throw new Error('error')
-
-            if(response.ok) {
-                const json = await response.json();
-                setPosts(json);
-            } else {
-                response
-            } 
-    
-        } catch(e) {
-            console.log('error', e);
-            setError("an Error Occured)")
-        } finally {
-            setLoading(false);
-        }
-    }
      
      
-    //fetchPosts from the API
-        useEffect(() => {            
+     //fetchPosts from the API
+     useEffect(() => {            
+            async function loadPosts() {
+               try {
+                   const response = await fetch(API_URL);
+                   // throw new Error('error')
+       
+                   if(response.ok) {
+                       const json = await response.json();
+                       setPosts(json);
+                   } else {
+                       response
+                   } 
+           
+               } catch(e) {
+                   console.log('error', e);
+                   setError("an Error Occured)")
+               } finally {
+                   setLoading(false);
+               };
+           };
             loadPosts();
         }, []);
     
